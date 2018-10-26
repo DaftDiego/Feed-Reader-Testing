@@ -98,7 +98,6 @@ $(function() {
          expect($('.entry')).toBeDefined();
        });
     });
-    console.log($('.feed'));
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
