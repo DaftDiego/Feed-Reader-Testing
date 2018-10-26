@@ -17,3 +17,5 @@ All the work I've done can be found in the "feedreader.js" file.
 # Instructions
 
 Open the "index.html" to launch the application. The bottom of the screen will display the test results from "feedreader.js" (test file is located in the 'spec' folder).
+
+Project URL: https://github.com/DaftDiego/Feed-Reader-Testing.git
