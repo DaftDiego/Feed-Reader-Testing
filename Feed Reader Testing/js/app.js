@@ -90,10 +90,6 @@ function init() {
 google.setOnLoadCallback(init);
 
 
-// Variable used for feed reader testing.
-let bodyClass = true;
-
-
 /* All of this functionality is heavily reliant upon the DOM, so we
  * place our code in the $() function to ensure it doesn't execute
  * until the DOM is ready.
@@ -135,17 +131,5 @@ $(function() {
      */
     menuIcon.on('click', function() {
         $('body').toggleClass('menu-hidden');
-
-        /* The following was added for our feed reader testing. It checks for the
-        'menu-hidden' class in the body of the page.
-        */
-        let body = $('body');
-
-        if (body['0'].classList.value === '')
-        {
-          bodyClass = false;
-        } else {
-          bodyClass = true;
-        }
     });
 }());

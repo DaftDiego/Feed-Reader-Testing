@@ -14,6 +14,10 @@ Per the project's specifications, I completed the test suite.
 
 Most of the new features can be found in the 'feedreader.js' file. I also edited 'app.js' file for a few of the tests to work.
 
+# Instructions
+
+Open the "index.html" to launch the application. The bottom of the screen will display the test results from "feedreader.js" (test file is located in the 'spec' folder).
+
 ## Why this Project?
 
 Testing is an important part of the development process and many organizations practice a standard of development known as "test-driven development". This is when developers write tests first, before they ever start developing their application. All the tests initially fail and then they start writing application code to make these tests pass.

@@ -62,7 +62,7 @@ $(function() {
 
        // I created the 'bodyClass' boolean in app.js file for testing.
        it('verify menu is hidden by default', function() {
-        expect(bodyClass).toBe(true);
+        expect($('body').hasClass('menu-hidden')).toBe(true);
        });
 
        /* TODO: Write a test that ensures the menu changes
@@ -75,9 +75,9 @@ $(function() {
         {
           let menuClick = $('.menu-icon-link');
           menuClick.click();
-          expect(bodyClass).toBe(false);
+          expect($('body').hasClass('menu-hidden')).toBe(false);
           menuClick.click();
-          expect(bodyClass).toBe(true);
+          expect($('body').hasClass('menu-hidden')).toBe(true);
         });
       });
 
@@ -90,15 +90,15 @@ $(function() {
        * Remember, loadFeed() is asynchronous so this test will require
        * the use of Jasmine's beforeEach and asynchronous done() function.
        */
-       let feed = $('.feed');
+
        beforeEach(function(done) {
          loadFeed(0, done)
        });
-       it ('loads at least a news feed in the feed container', function(done) {
-         expect(feed.length).not.toBe(0);
-         done();
+       it ('loads at least a news feed in the feed container', function() {
+         expect($('.entry')).toBeDefined();
        });
     });
+    console.log($('.feed'));
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
@@ -108,19 +108,22 @@ $(function() {
        * by the loadFeed function that the content actually changes.
        * Remember, loadFeed() is asynchronous.
        */
-       let feed = $('feed');
 
-       // variable used to compare the initial feed to the next one.
+
+       // Variables used to compare the initial feed to the next one.
        let prevFeed;
+       let feed;
 
        beforeEach(function(done) {
          loadFeed(0, function() {
-           prevFeed = feed.html();
+           feed = $('feed');
            loadFeed(1, done);
          });
        });
 
        it('is working, and content updates', function(done) {
+         prevFeed = feed.html();
+
          expect($('.feed').html()).not.toBe(prevFeed);
          done();
        });
