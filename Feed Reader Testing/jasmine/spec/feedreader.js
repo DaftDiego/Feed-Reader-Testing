@@ -27,7 +27,7 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* This test loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
@@ -38,7 +38,7 @@ $(function() {
           });
          }
 
-        /* TODO: Write a test that loops through each feed
+        /* This test loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
@@ -50,24 +50,20 @@ $(function() {
          }
     });
 
-
-    /* TODO: Write a new test suite named "The menu" */
+    /* New test suite named "The menu" */
     describe('The menu', function() {
 
-      /* TODO: Write a test that ensures the menu element is
-       * hidden by default. You'll have to analyze the HTML and
-       * the CSS to determine how we're performing the
-       * hiding/showing of the menu element.
+      /* This test ensures the menu element is
+       * hidden by default.
        */
 
-       // I created the 'bodyClass' boolean in app.js file for testing.
        it('verify menu is hidden by default', function() {
-        expect(bodyClass).toBe(true);
+        expect($('body').hasClass('menu-hidden')).toBe(true);
        });
 
-       /* TODO: Write a test that ensures the menu changes
+       /* This test ensures the menu changes
         * visibility when the menu icon is clicked. This test
-        * should have two expectations: does the menu display when
+        * has two expectations: does the menu display when
         * clicked and does it hide when clicked again.
         */
 
@@ -75,52 +71,56 @@ $(function() {
         {
           let menuClick = $('.menu-icon-link');
           menuClick.click();
-          expect(bodyClass).toBe(false);
+          expect($('body').hasClass('menu-hidden')).toBe(false);
           menuClick.click();
-          expect(bodyClass).toBe(true);
+          expect($('body').hasClass('menu-hidden')).toBe(true);
         });
       });
 
-      /* TODO: Write a new test suite named "Initial Entries" */
+      /* New test suite named "Initial Entries" */
     describe('Initial Entries', function() {
 
-      /* TODO: Write a test that ensures when the loadFeed
+      /* This test ensures when the loadFeed
        * function is called and completes its work, there is at least
        * a single .entry element within the .feed container.
-       * Remember, loadFeed() is asynchronous so this test will require
+       * Remember, loadFeed() is asynchronous so this test requires
        * the use of Jasmine's beforeEach and asynchronous done() function.
        */
-       let feed = $('.feed');
+
        beforeEach(function(done) {
          loadFeed(0, done)
        });
-       it ('loads at least a news feed in the feed container', function(done) {
+       it ('loads at least a news feed in the feed container', function() {
+         const feed = $('.feed .entry');
          expect(feed.length).not.toBe(0);
-         done();
        });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+
+    /* New test suite named "New Feed Selection" */
 
     describe('New Feed Selection', function() {
 
-      /* TODO: Write a test that ensures when a new feed is loaded
+      /* This test ensures when a new feed is loaded
        * by the loadFeed function that the content actually changes.
        * Remember, loadFeed() is asynchronous.
        */
-       let feed = $('feed');
 
-       // variable used to compare the initial feed to the next one.
+
+       // Variables used to compare the initial feed to the next one.
        let prevFeed;
+       let feed;
 
        beforeEach(function(done) {
          loadFeed(0, function() {
-           prevFeed = feed.html();
+           feed = $('.feed').html();
            loadFeed(1, done);
          });
        });
 
        it('is working, and content updates', function(done) {
+         prevFeed = feed;
+
          expect($('.feed').html()).not.toBe(prevFeed);
          done();
        });
